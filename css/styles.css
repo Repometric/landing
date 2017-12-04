@@ -1,5 +1,7 @@
-/* CSS Huck */
-* { 
+/* scss-lint:disable all */
+/* csslint ignore:start */
+
+* {
   vertical-align: baseline; 
   font-weight: inherit; 
   font-family: inherit; 
@@ -131,7 +133,7 @@ p,
 a {
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
-
+/* csslint ignore:end */
 label {
     font-weight: normal !important;
 }
@@ -554,3 +556,6 @@ input:-webkit-autofill:active {
         font-size: 14px;
     }
 }
+
+/* csslint ignore:end */
+/* scss-lint:enable all */
