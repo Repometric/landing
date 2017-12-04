@@ -1,0 +1,87 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="../node_modules/@polymer/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="rm-common-styles.html">
+
+<dom-module id="rm-services">
+    <template>
+        <style include="rm-common-styles"></style>
+        <style>
+            :host {
+                display: block;
+            }
+
+            #section-audience > div {
+                padding-right: 1.2em;
+                padding-left: 1.2em;
+            }
+
+            #section-audience .service-box {
+                padding-top: 2em;
+            }
+
+            .service-box p {
+                margin-bottom: 0;
+                text-align: justify;
+            }
+
+            .block {
+                background: #e0e0e0;
+            }
+
+            .coming-soon {
+                opacity: 0.7 !important;
+            }
+
+        </style>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+                    <section>
+                        <div id="section-audience" class="row block text-left">
+                            <template is="dom-repeat" items="{{services}}" as="service">
+                                <div class$="col-lg-5 col-md-4 col-sm-4 [[service.state]]">
+                                    <div class="service-box">
+                                        <h3 class="text-nowrap">[[service.header]]</h3>
+                                        <hr class="underline">
+                                        <p class="text-muted">[[service.description]]</p>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class RepometricServices extends Polymer.Element {
+            static get is() { return 'rm-services'; }
+
+            static get properties() {
+                return {
+                    services: {
+                        type: Array,
+                        value() {
+                            return [
+                                {header: 'For Devs', description: 'Analyze and lint the code inside your favorite IDE (Visual Studio Code, Atom) or integrate linterhub platform in your process.', state: 'col-lg-offset-1'},
+                                {header: 'For Teams', description: 'Coming soon: Automatically check the code in the team repository, run daily analysis or lint source code during pull requests.', state: 'coming-soon'},
+                                {header: 'For Buisiness', description: 'Coming soon: Get detailed reports and statistics about development process without diving into details.', state: 'coming-soon'}
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+        window.customElements.define(RepometricServices.is, RepometricServices);
+    </script>
+</dom-module>
+
+
+

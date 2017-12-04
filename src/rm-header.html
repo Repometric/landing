@@ -1,0 +1,388 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="../node_modules/@polymer/polymer/lib/elements/dom-if.html">
+<link rel="import" href="../node_modules/jquery/dist/jquery.min.js">
+<link rel="import" href="rm-common-styles.html">
+
+<dom-module id="rm-header">
+    <template>
+        <style include="rm-common-styles"></style>
+        <style>
+            :host {
+                display: block;
+            }
+
+            .logo {
+                width: 200px;
+                height: auto;
+            }
+
+            .logo-link {
+                position: relative;
+                z-index: 99;
+            }
+
+            #section-hello p {
+                padding: 10px 0 0 0;
+            }
+
+            input[type=email] {
+                float: left;
+                margin-right: 10px;
+                color: white;
+                width: 115px;
+                -webkit-transition: all .35s;
+                -o-transition: all .35s;
+                transition: all .35s;
+                -webkit-user-select: text;
+                -khtml-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
+
+            input[type=email]:hover {
+                background-color: rgba(0, 0, 0) !important;
+            }
+
+            input[type=email]:active,
+            input[type=email]:focus {
+                width: 215px;
+            }
+
+            .hide-el {
+                position: absolute;
+                font-style: 0;
+                -webkit-transform: scaleX(0);
+                -ms-transform: scaleX(0);
+                -o-transform: scaleX(0);
+                transform: scaleX(0);
+            }
+
+            #subscribe {
+                padding-top: 5px;
+                visibility: hidden;
+                background: none;
+                color: black;
+            }
+
+            input[type=email]:active.required+#subscribe,
+            input[type=email]:focus.required+#subscribe {
+                display: inline-block;
+                visibility: visible;
+            }
+
+            .form {
+                border-radius: 18.75em;
+                height: 32px;
+            }
+
+            #loading {
+                text-align: center;
+                width: 100%;
+                font-size: 1em;
+                line-height: 1.3em;
+            }
+
+            .form #submitEmail {
+                display: none;
+                background: none;
+                color: white;
+                border: 0px;
+                outline: 0px;
+                cursor: pointer;
+                -webkit-transition: all 0.35s;
+                -o-transition: all 0.35s;
+                transition: all 0.35s;
+            }
+
+            #form input[type=email].subscribe-error {
+                background-color: #DB2352;
+            }
+
+            input[type=email].subscribed {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+                cursor: default;
+                width: 115px;
+                background-color: #22AA60;
+            }
+
+            input[type=email].subscribed:hover {
+                background-color: #22AA60;
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+                line-height: 20px;
+                font-size: 14px;
+            }
+
+            .error {
+                color: #DB2352;
+            }
+
+            .success {
+                max-width: 770px;
+                color: #22AA60;
+            }
+
+            #response {
+                -webkit-transition: all .35s;
+                -o-transition: all .35s;
+                transition: all .35s;
+            }
+
+            #message {
+                position: absolute;
+                left: 0px;
+                top: 47px;
+                width: 250px;
+                padding: 5px 10px;
+                background-color: #fff;
+                border-radius: 5px;
+                z-index: 5;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, .05);
+            }
+
+            #message:after {
+                content: "";
+                position: absolute;
+                top: -10px;
+                left: 10px;
+                border-bottom: 10px solid rgba(255, 255, 255, 1);
+                border-right: 10px solid rgba(0, 0, 0, 0);
+                border-left: 10px solid rgba(0, 0, 0, 0);
+                transition: .5s;
+            }
+
+            /* Placeholder behaviour */
+
+            input[type=email]::-webkit-input-placeholder {
+                color: white !important;
+                transition: color 0.7s ease;
+            }
+
+            input[type=email]:-ms-input-placeholder {
+                color: white !important;
+                transition: color 0.7s ease;
+            }
+
+            input[type=email]::-moz-placeholder {
+                color: white !important;
+                transition: color 0.7s ease;
+                opacity: 1;
+            }
+
+            input[type=email]:-moz-placeholder {
+                color: white !important;
+                opacity: 1;
+                transition: color 0.7s ease;
+            }
+
+            input[type=email]:focus::-webkit-input-placeholder {
+                color: rgba(255, 255, 255, .4) !important;
+            }
+
+            input[type=email]:focus:-ms-input-placeholder {
+                color: rgba(255, 255, 255, .4) !important;
+            }
+
+            input[type=email]:focus::-moz-placeholder {
+                color: rgba(255, 255, 255, .4) !important;
+                opacity: 1;
+            }
+
+            input[type=email]:focus:-moz-placeholder {
+                color: rgba(255, 255, 255, .4) !important;
+                opacity: 1;
+            }
+
+            /* Autofill behaviour */
+
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                transition: background-color 300s ease-in-out 0s;
+                animation: chColor 0s both;
+            }
+        </style>
+
+        <header class="container-fluid">
+            <div class="row">
+                <div class="col-lg-offset-1 col-xs-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <section>
+                        <div id="section-hello" class="row">
+                            <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+                                <a href="http://repometric.com/index.html" 
+                                   title="repometric - reporting and analytics." 
+                                   class="logo-link">
+                                    <img src="assets/raster/rm-logo-border.png" 
+                                         class="logo" 
+                                         alt="Repometric logo">
+                                </a>
+                            </div>
+                            <div class="col-lg-7 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-offset-2 col-xs-offset-0">
+                                <h1>Reporting and analytics</h1>
+                                <h3>platform for your development process</h3>
+                                <hr class="underline">
+                                <form action="http://repometric.us15.list-manage.com/subscribe/post?u=b6cca98086d340193c09d707f&amp;id=9258d978d7" 
+                                      method="post"
+                                      id="form" 
+                                      class="validate" 
+                                      target="_blank" 
+                                      novalidate="">
+                                    <div class="input-group form" 
+                                         id="formSection">
+                                        <div id="response">
+                                            <dom-if if="[[visible]]">
+                                                <template>
+                                                    <div id="message">[[message]]</div>
+                                                </template>
+                                            </dom-if>
+                                        </div>
+                                        <div class="mc-field-group">
+                                            <input id="email" 
+                                                   name="EMAIL" 
+                                                   class$="btn btn-primary email [[subscribe]]" 
+                                                   on-click="_expand" 
+                                                   on-blur="_reset" 
+                                                   placeholder$="[[placeholder]]"
+                                                   pattern="[A-Za-z]{2,}"
+                                                   type="email">
+                                            <button type="submit" 
+                                                    name="subscribe" 
+                                                    id="subscribe" 
+                                                    class="button" 
+                                                    on-click="_subscribe">
+                                                <i id="enter" class="fa fa-envelope-o fa-fw"></i>
+                                                <i id="loading" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" style="display: none;"></i>
+                                            </button>
+                                        </div>
+                                        <div aria-hidden="true" class="hide-el">
+                                            <input id="subscribeKey" tabindex="-1" type="text">
+                                        </div>
+                                    </div>
+                                </form>
+                                <p>and get our tips how to improve your project!</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </header>
+
+    </template>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script>        
+        /**
+         * @customElement
+         * @polymer
+         */
+        class RepometricHeader extends Polymer.Element {
+            static get is() { return 'rm-header'; }
+
+            static get properties() {
+                return {
+                    visible: Boolean,
+                    message: String,
+                    placeholder: {
+                        type: String,
+                        value: 'Subscribe'
+                    },
+                    isError: {
+                        type: Boolean,
+                        observer: '_isError'
+                    },
+                    isSubscribed: {
+                        type: Boolean,
+                        observer: '_isSubscribed'
+                    },
+                    subscribe: {
+                        type: String,
+                        value: 'required'
+                    },
+                    subscribeKey: {
+                        type: String,
+                        value: 'b_b6cca98086d340193c09d707f_9258d978d7'
+                    }
+                }
+            }
+
+            _isError() {
+                this.$.response.classList.add("error");
+                this.subscribe = "required subscribe-error";
+                this.$.email.readOnly = false;
+                this.isError = false;
+            }
+
+            _isSubscribed() {
+                this.$.response.classList.add("success");
+                this.subscribe = "subscribed";
+                this.$.email.value = "Subscribed";
+                this.$.email.readOnly = true;
+            }
+
+            _expand() {
+                if (!this.isSubscribed) {
+                    this.placeholder = "Enter your email...";
+                }
+            }
+
+            _collapse() {
+                if (!this.isSubscribed) {
+                    this.placeholder = "Subscribe";
+                    this.$.email.value = "";
+                }
+            }
+
+            _makeVisible() {
+                this.visible = true;
+                setTimeout(() => {
+                    this.visible = false;
+                }, 3000);
+            }
+
+            _reset(element) {
+                this._collapse();
+                if (!this.isSubscribed) {
+                    this.subscribe = "required";
+                }
+            }
+
+            _request() {
+                var url = this.$.form.action.replace("/post?u=", "/post-json?u=") + "&c=?";
+                var data = this.$.email.name + "=" + this.$.email.value + "&" + this.subscribe.key + "=";
+                var request = {
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: data
+                };
+                return $.ajax(request);
+                // return fetch(url + data, {credentials: 'include'});
+            }
+
+            _subscribe(element) {
+                element.preventDefault();
+                if (!this.isSubscribed) {
+                    this._request().then(this._displayMsg.bind(this));
+                }
+            }
+
+            _displayMsg(data) {
+                if (data.result === "success") {
+                    this.message = data.msg;
+                    this.isSubscribed = true;
+                } else {
+                    this.message = "Error: " + data.msg.replace("0 - ", "");
+                    this.isError = true;
+                }
+                this._makeVisible();
+            }
+        }
+        window.customElements.define(RepometricHeader.is, RepometricHeader);
+    </script>
+</dom-module>

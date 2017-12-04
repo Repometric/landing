@@ -1,0 +1,6 @@
+{
+  "name": "rm-app",
+  "short_name": "rm-app",
+  "start_url": "/",
+  "display": "standalone"
+}

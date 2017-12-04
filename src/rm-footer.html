@@ -1,0 +1,46 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="rm-common-styles.html">
+
+<dom-module id="rm-footer">
+    <template>
+        <style include="rm-common-styles"></style>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <footer>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="list-inline social-buttons">
+                            <li><a title="Email" href="mailto:hi@repometric.com"><i class="fa fa-2x fa-envelope"></i></a>
+                            </li>
+                            <li><a title="Github" href="https://github.com/repometric" target="_blank"><i class="fa fa-2x fa-github"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class RepometricFooter extends Polymer.Element {
+            static get is() { return 'rm-footer'; }
+        }
+
+        window.customElements.define(RepometricFooter.is, RepometricFooter);
+    </script>
+</dom-module>
+
+
+
+

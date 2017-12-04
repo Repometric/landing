@@ -34,227 +34,40 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/raster/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="import" href="/src/rm-app.html">
+    <!--<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>-->
+
+    <style>
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            background: #efefef;
+        }
+        @media (min-width: 768px) {
+            body {
+                background: url('images/background.jpg') no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+            }
+        }
+    </style>
+
 </head>
 
-<body id="page-top">
+<body>
+    <rm-app unresolved>Loading...</rm-app>
 
-    <header class="container-fluid" >
-       <div class="row">
-           <div class="col-lg-offset-1 col-xs-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-               <section>
-                    <div id="section-hello" class="row">
-                        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 hidden-sm hidden-xs">
-                            <a href="/" title="repometric - reporting and analytics." class="logo-link"><img src="assets/raster/rm-logo-border.png" class="logo" alt="Repometric logo"></a>
-                        </div>
-                        <div class="col-lg-7 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-offset-2 col-xs-offset-0">
-                            <h1>Reporting and analytics</h1>
-                            <h3>platform for your development process</h3>
-                            <hr class="underline">
-                            <form 
-                               action="http://repometric.us15.list-manage.com/subscribe/post?u=b6cca98086d340193c09d707f&amp;id=9258d978d7" method="post" 
-                               id="form" 
-                               class="validate" 
-                               target="_blank" 
-                               novalidate>
-                                <div class="input-group form" id="formSection">
-                                <div id="mce-responses">
-                                    <div class="response display-none" id="error-response"></div>
-                                    <div class="response display-none" id="success-response" ></div>
-                                </div> 
-                                    <div class="mc-field-group">    
-                                        <input  id="email" 
-                                                name="EMAIL" 
-                                                class="btn btn-primary required email" 
-                                                placeholder="Subscribe" 
-                                                value=""  
-                                                type="email" 
-                                                pattern="[A-Za-z]{2,}" 
-                                            />
-                                            <button type="submit" name="subscribe" id="subscribe" class="button">
-                                                <i id="enter" class="fa fa-envelope-o fa-fw"></i>
-                                                <i id="loading" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" style="display: none;"></i>
-                                        </button>
-                                    </div>
-                                    <div aria-hidden="true" class="hide-el">
-                                        <input id="subscribeKey" type="text" name="b_b6cca98086d340193c09d707f_9258d978d7" tabindex="-1" value="">
-                                    </div>
-                                </div>
-                            </form>
-                            <p>and get our tips how to improve your project!</p>   
-                        </div>
-                    </div>
-               </section>
-           </div>
-       </div>
-    </header>
-
-   <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-                <section>
-                    <div id="section-audience" class="row block text-left">
-                        <div class="col-lg-5 col-lg-offset-1 col-md-4 col-sm-4">
-                            <div class="service-box">
-                                <h3 class="text-nowrap">For Devs</h3>
-                                <hr class="underline">
-                                <p class="text-muted">
-                                    Analyze and lint the code inside your favorite IDE (Visual Studio Code, Atom) or integrate linterhub platform in your process. 
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-4 col-sm-4 coming-soon">
-                            <div class="service-box">
-                                <h3 class="text-nowrap">For Teams</h3>
-                                <hr class="underline">
-                                <p class="text-muted">
-                                    Coming soon: Automatically check the code in the team repository, run daily analysis or lint source code during pull requests.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-4 col-sm-4 coming-soon">
-                            <div class="service-box">
-                                <h3 class="text-nowrap">For Buisiness</h3>
-                                <hr class="underline">
-                                <p class="text-muted">
-                                    Coming soon: Get detailed reports and statistics about development process without diving into details.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-12">
-                    <hr>
-                </div>
-                <div class="col-md-12">
-                    <ul class="list-inline social-buttons">
-                        <li><a title="Email" href="mailto:hi@repometric.com"><i class="fa fa-2x fa-envelope"></i></a>
-                        </li>
-                        <li><a title="Github" href="https://github.com/repometric" target="_blank"><i class="fa fa-2x fa-github"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
 
     <!-- Javascript -->
     <!-- HTML5 Shim and Respond.js for HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]-->
+        <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+        <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--[endif]-->
 
-    <!-- Logic -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
-    <script type="text/javascript">
-        (function() {  
-            var $dom = {
-                email: $("#email"),
-                subscribe: $("#subscribe"),
-                send: $("#enter"),
-                form: $("#form"),
-                key: $("#subscribeKey")
-            };
-            var landing = {
-                value : "",
-                expand: function () {
-                    $dom.email.attr("placeholder", "Enter your email...");
-                    return landing;
-                },
-                collapse: function () {
-                    $dom.email.attr("placeholder", "Subscribe");
-                    $dom.email.val("");
-                    return landing;
-                },
-                focus: function () {
-                    setTimeout(function(){
-                        $dom.email.focus();
-                        $dom.email.val(landing.value);
-                        $dom.email.attr("placeholder", "Enter your email...");
-                    });
-                    return landing;
-                },
-                hideStatus: function (element) {
-                    $dom.email.removeClass("subscibedErr");
-                    $("#error-response").html("").hide();
-                    $("#success-response").html("").hide();
-                    return landing;
-                },
-                toggle: function () {
-                    $("#enter, #loading").toggle();
-                    return landing;
-                },
-                reset: function (element) {
-                    landing.value = $dom.email.val();
-                    landing.collapse().hideStatus();
-                },
-                request: function (sucess, error) {
-                    var url = $dom.form.attr("action").replace("/post?u=", "/post-json?u=") + "&c=?";
-                    var data = $dom.email.attr("name") + "=" + $dom.email.val() + "&" + $dom.key.attr("name") +"="; 
-                    var request = {
-                        url: url,
-                        type: "GET",
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        data: data,
-                        success: sucess,
-                        error: error
-                    };
-                    $.ajax(request);
-                },
-                subscribe: function (element) {
-                    element.preventDefault();
-                    $dom.email.prop("readonly", true);
-                    landing.toggle().hideStatus().request(function (data) {
-                        var message;
-                        var div;
-                        landing.toggle();
-                        if (data.result == "success") {
-                            $dom.email.unbind("click");
-                            $dom.email.blur();  
-                            $dom.email.unbind("blur");
-                            $dom.email.addClass("subscibed");
-                            $dom.email.removeClass("required");
-                            $dom.email.val("Subscribed");
-                            div = $("#success-response");
-                            message = data.msg;
-                            $("body").bind("click", landing.hideStatus.bind(this));
-                        } else {
-                            $dom.email.addClass("subscibedErr");
-                            $dom.email.prop("readonly", false);
-                            div = $("#error-response");
-                            message = "Error: " + data.msg.replace("0 - ", "");
-                        }
-                        div.html(message).show();
-                        $("#mce-responses").css("opacity", "1");
-                    });
-                }
-            };
-    
-            $dom.email.bind("click", landing.expand.bind(this));
-            $dom.email.bind("input", landing.hideStatus.bind(this));
-            $dom.email.bind("blur", landing.reset.bind(this));
-            $dom.send.bind("mousedown", landing.focus.bind(this));
-            $dom.subscribe.bind("click", landing.subscribe.bind(this));
-        })();
-    </script>
-   
     <!-- Google Analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

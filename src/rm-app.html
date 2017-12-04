@@ -1,0 +1,38 @@
+<link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+<link rel="import" href="rm-common-styles.html">
+<link rel="import" href="rm-footer.html">
+<link rel="import" href="rm-header.html">
+<link rel="import" href="rm-services.html">
+
+<dom-module id="rm-app">
+  <template>
+    <style include="rm-common-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <rm-header></rm-header>
+    <rm-services></rm-services>
+    <rm-footer></rm-footer>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class RepometricApp extends Polymer.Element {
+      static get is() { return 'rm-app'; }
+
+      ready() {
+          super.ready();
+          this.removeAttribute('unresolved');
+      }
+    }
+    window.customElements.define(RepometricApp.is, RepometricApp);
+  </script>
+
+</dom-module>
