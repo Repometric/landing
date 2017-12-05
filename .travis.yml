@@ -5,10 +5,12 @@ cache:
   directories:
     - node_modules
 install:
-  - npm install -g bower polymer-cli
+  - npm install -g polymer-cli
   - yarn install
+  - ls build/es5-bundled
 script:
   - polymer build
+  - ls build/es5-bundled
 deploy:
   provider: pages
   skip_cleanup: true
