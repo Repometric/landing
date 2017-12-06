@@ -13,9 +13,6 @@
     "@webcomponents/shadycss": "^1.0.6",
     "@webcomponents/webcomponentsjs": "^1.0.14"
   },
-  "dependencies": {
-    "jquery": "^3.2.1"
-  },
   "engines": {
     "yarn": ">= 1.0.0"
   }
