@@ -23,9 +23,30 @@
     <link rel="manifest" href="manifest.json">
 
     <style>
+        @keyframes spinner {
+          to {transform: rotate(360deg);}
+        }
+
+        .spinner:before {
+          content: '';
+          box-sizing: border-box;
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          width: 50px;
+          height: 50px;
+          margin-top: -20px;
+          margin-left: -20px;
+          border-radius: 50%;
+          border-top: 2px solid #07d;
+          border-right: 2px solid transparent;
+          animation: spinner .9s linear infinite;
+        }
+
         body {
             font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
         }
+        
         @media (min-width: 768px) {
             body {
                 background: url('images/background.jpg') no-repeat;
@@ -38,7 +59,10 @@
 </head>
 
 <body style="background-color: #efefef;">
-    <rm-app unresolved>Loading...</rm-app>
+
+    <rm-app unresolved>
+        <div class="spinner"></div>
+    </rm-app>
 
     <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
