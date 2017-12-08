@@ -24,52 +24,147 @@
     <link rel="manifest" href="manifest.json">
 
     <style>
-        @keyframes spinner {
-          to {transform: rotate(360deg);}
+        @keyframes spinner {            
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .spinner:before {
-          content: '';
-          box-sizing: border-box;
-          position: absolute;
-          top: 30%;
-          left: 50%;
-          width: 50px;
-          height: 50px;
-          margin-top: -20px;
-          margin-left: -20px;
-          border-radius: 50%;
-          border-top: 2px solid #07d;
-          border-right: 2px solid transparent;
-          animation: spinner .9s linear infinite;
-        }
-
-        body {
-            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-        }
-        
-        @media (min-width: 768px) {
-            body {
-                background: url('images/background.jpg') no-repeat;
-                background-size: cover;
-                background-attachment: fixed;
-            }
+            z-index: 1;
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            margin-top: -20px;
+            margin-left: -20px;
+            border-radius: 50%;
+            border-top: 2px solid #07d;
+            border-right: 2px solid transparent;
+            animation: spinner .9s linear infinite;
         }
     </style>
 
 </head>
 
-<body style="background-color: #efefef;">
+<body class="spinner">
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-1 col-xs-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <section>
+                    <div id="section-hello" class="row">
+                        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+                            <a href="http://repometric.com/index.html" title="repometric - reporting and analytics." class="logo-link">
+                                <img src="assets/raster/rm-logo-border.png" class="logo" alt="Repometric logo">
+                            </a>
+                        </div>
+                        <div class="col-lg-7 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-offset-2 col-xs-offset-0">
+                            <h1>Reporting and analytics</h1>
+                            <h3>platform for your development process</h3>
+                            <hr class="underline">
+                            <form action="http://repometric.us15.list-manage.com/subscribe/post?u=b6cca98086d340193c09d707f&amp;id=9258d978d7" method="post"
+                                  id="form" class="validate" target="_blank" novalidate="">
+                                <div class="input-group form" id="formSection">
+                                    <div id="response">
+                                        <div id="message" style="display: none;"></div>
+                                    </div>
+                                    <div class="mc-field-group">
+                                        <input id="email" 
+                                               name="EMAIL" 
+                                               class="btn btn-primary required email" 
+                                               placeholder="Subscribe" 
+                                               value="" 
+                                               type="email" 
+                                               pattern="[A-Za-z]{2,}"/>
+                                        <button type="submit" name="subscribe" id="subscribe" class="button">
+                                            <i id="enter" class="fa fa-envelope-o fa-fw"></i>
+                                            <i id="loading" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" style="display: none;"></i>
+                                        </button>
+                                    </div>
+                                    <div aria-hidden="true" class="hide-el">
+                                        <input id="subscribeKey" type="text" name="b_b6cca98086d340193c09d707f_9258d978d7" tabindex="-1" value="">
+                                    </div>
+                                </div>
+                            </form>
+                            <p>and get our tips how to improve your project!</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </header>
 
-    <rm-app unresolved>
-        <div class="spinner"></div>
-    </rm-app>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+                <section>
+                    <div id="section-audience" 
+                         class="row block text-left">
+                        <div class="col-lg-5 col-lg-offset-1 col-md-4 col-sm-4">
+                            <div class="service-box">
+                                <h3 class="text-nowrap">For Devs</h3>
+                                <hr class="underline">
+                                <p class="text-muted">
+                                    Analyze and lint the code inside your favorite IDE (Visual Studio Code, Atom) or integrate linterhub platform in your process.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 col-sm-4 coming-soon">
+                            <div class="service-box">
+                                <h3 class="text-nowrap">For Teams</h3>
+                                <hr class="underline">
+                                <p class="text-muted">
+                                    Coming soon: Automatically check the code in the team repository, run daily analysis or lint source code during pull requests.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 col-sm-4 coming-soon">
+                            <div class="service-box">
+                                <h3 class="text-nowrap">For Buisiness</h3>
+                                <hr class="underline">
+                                <p class="text-muted">
+                                    Coming soon: Get detailed reports and statistics about development process without diving into details.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 
-    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-
-    <link rel="import" href="src/rm-app.html">
+    <footer>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                            <a title="Email" href="mailto:hi@repometric.com">
+                                <i class="fa fa-2x fa-envelope"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Github" href="https://github.com/repometric" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 
     <!-- Javascript -->
     <!-- HTML5 Shim and Respond.js for HTML5 elements and media queries -->
@@ -79,12 +174,18 @@
         <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <!--[endif]-->
 
+    <!-- Logic -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/logic.js"></script>
+    
     <!-- Google Analytics -->
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)        
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-91756495-1', 'auto');
         ga('send', 'pageview');
     </script>

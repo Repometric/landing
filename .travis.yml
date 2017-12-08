@@ -1,15 +1,5 @@
 language: node_js
 node_js: stable
-cache:
-  yarn: true
-  directories:
-    - node_modules
-install:
-  - npm install -g polymer-cli
-  - yarn install
-script:
-  - polymer build
-  - cd build/es6-unbundled
 deploy:
   provider: pages
   skip_cleanup: true
