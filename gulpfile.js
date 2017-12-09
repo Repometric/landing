@@ -8,9 +8,9 @@ var favicon = require('gulp-real-favicon');
 
 var path = {
   index: './src/index.html',
-  css: './src/css/*.css',
-  js: './src/js/*.js',
-  images: './src/images/*.*',
+  css: './src/css/**/*.css',
+  js: './src/js/**/*.js',
+  images: './src/images/**/*.*',
   assets: './assets/raster/rm-logo-border.png',
   partials: './src/partials/*.html',
   og: './src/partials/og-image.jpg',
@@ -33,7 +33,7 @@ gulp.task('clean', function () {
 // Copy static files
 gulp.task('static', function () {
   return gulp
-    .src([path.css, path.js, path.images, path.assets])
+    .src([path.css, path.js, path.images, path.assets], {base: 'src'})
     .pipe(gulp.dest(path.dest));
 });
 
