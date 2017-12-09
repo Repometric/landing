@@ -7,15 +7,18 @@ var del = require('del');
 var favicon = require ('gulp-real-favicon');
 
 var path = {
-  index: './index.html',
-  url: 'https://repometric.com',
-  dest: './www',
+  index: './src/index.html',
+  css: './src/css/*.css',
+  js: './src/js/*.js',
+  images: './src/images/*.*',
   partials: './src/partials/*.html',
+  og: './src/partials/og-image.jpg',
   favicon: {
     description: './src/favicon/faviconDescription.json',
     data: './src/favicon/faviconData.json'
   },
-  og: './src/images/og-image.jpg'
+  dest: './www',
+  url: 'https://repometric.com'
 };
 
 // Clean output
@@ -23,6 +26,13 @@ gulp.task('clean', function () {
   return del([
     path.dest + '/**/*',
   ]);
+});
+
+// Copy static files
+gulp.task('static', function () {
+  return gulp
+    .src([path.css, path.js, path.images])
+    .pipe(gulp.dest(path.dest));
 });
 
 // Inject partials
@@ -84,6 +94,7 @@ gulp.task('og', function() {
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', [
   'clean',
+  'static',
   'favicons',
   'sitemap',
   'robots',
