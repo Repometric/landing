@@ -6,7 +6,7 @@ cache:
 install:
   - npm install
 script:
-  - gulp
+  - npm run build
   - cd www
 deploy:
   provider: pages

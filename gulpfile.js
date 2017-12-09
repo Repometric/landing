@@ -1,18 +1,20 @@
+var fs = require('fs');
+var del = require('del');
 var gulp = require('gulp');
 var inject = require('gulp-inject');
 var sitemap = require('gulp-sitemap');
 var robots = require('gulp-robots');
-var fs = require('fs');
-var del = require('del');
-var favicon = require ('gulp-real-favicon');
+var favicon = require('gulp-real-favicon');
 
 var path = {
   index: './src/index.html',
   css: './src/css/*.css',
   js: './src/js/*.js',
   images: './src/images/*.*',
+  assets: './assets/raster/rm-logo-border.png',
   partials: './src/partials/*.html',
   og: './src/partials/og-image.jpg',
+  gh: ['CNAME', '.nojekyll'],
   favicon: {
     description: './src/favicon/faviconDescription.json',
     data: './src/favicon/faviconData.json'
@@ -31,7 +33,14 @@ gulp.task('clean', function () {
 // Copy static files
 gulp.task('static', function () {
   return gulp
-    .src([path.css, path.js, path.images])
+    .src([path.css, path.js, path.images, path.assets])
+    .pipe(gulp.dest(path.dest));
+});
+
+// Copy GitHub files
+gulp.task('gh', function () {
+  return gulp
+    .src(path.gh)
     .pipe(gulp.dest(path.dest));
 });
 
@@ -99,5 +108,6 @@ gulp.task('default', [
   'sitemap',
   'robots',
   'og',
+  'gh',
   'inject'
 ]);
