@@ -1,0 +1,27 @@
+{
+  "name": "landing",
+  "version": "1.0.0",
+  "description": "repometric landing",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/repometric/landing.git"
+  },
+  "keywords": [
+    "landing"
+  ],
+  "author": "repometric",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/repometric/landing/issues"
+  },
+  "homepage": "https://repometric.com",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.3.0",
+    "gulp-real-favicon": "^0.2.2",
+    "gulp-robots": "^2.0.4",
+    "gulp-sitemap": "^4.2.0"
+  }
+}

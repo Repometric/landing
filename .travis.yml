@@ -10,4 +10,3 @@ deploy:
     branch: master
     target_branch: gh-pages
     fqdn: repometric.com
-  
