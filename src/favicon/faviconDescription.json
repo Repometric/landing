@@ -1,9 +1,9 @@
 {
-	"masterPicture": "assets/vector/rm-logo-border.svg",
+	"masterPicture": "./src/assets/vector/rm-logo-border.svg",
 	"iconsPath": "./",
 	"design": {
 		"ios": {
-			"masterPicture": "assets/vector/rm-logo.svg",
+			"masterPicture": "./src/assets/vector/rm-logo.svg",
 			"pictureAspect": "backgroundAndMargin",
 			"backgroundColor": "#ffffff",
 			"margin": "18%",
