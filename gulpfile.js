@@ -5,13 +5,15 @@ var inject = require('gulp-inject');
 var sitemap = require('gulp-sitemap');
 var robots = require('gulp-robots');
 var favicon = require('gulp-real-favicon');
+var inlinesource = require('gulp-inline-source');
 
+// Common pathes
 var path = {
   index: './src/index.html',
   css: './src/css/**/*.css',
   js: './src/js/**/*.js',
   images: './src/images/**/*.*',
-  assets: './assets/raster/rm-logo-border.png',
+  assets: './src/assets/**/rm-logo-border.png',
   partials: './src/partials/*.html',
   og: './src/partials/og-image.jpg',
   gh: ['CNAME', '.nojekyll'],
@@ -33,7 +35,7 @@ gulp.task('clean', function () {
 // Copy static files
 gulp.task('static', function () {
   return gulp
-    .src([path.css, path.js, path.images, path.assets], {base: 'src'})
+    .src([path.images, path.assets], {base: 'src'})
     .pipe(gulp.dest(path.dest));
 });
 
@@ -50,6 +52,9 @@ gulp.task('inject', ['favicons'], function() {
   var code = JSON.parse(faviconData).favicon.html_code;
   return gulp
     .src(path.index)
+    .pipe(inlinesource({
+      compress: true
+    }))
     .pipe(inject(gulp.src([path.partials]), {
       starttag: '<!-- inject:{{path}} -->',
       relative: true,
@@ -57,7 +62,7 @@ gulp.task('inject', ['favicons'], function() {
         return file.contents.toString('utf8')
       }
     }))
-		.pipe(favicon.injectFaviconMarkups(code))
+    .pipe(favicon.injectFaviconMarkups(code))
     .pipe(gulp.dest(path.dest));
 });
 
