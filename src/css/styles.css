@@ -1,5 +1,28 @@
 /* CSS Huck */
 
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner:before {
+    z-index: 1;
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: -20px;
+    margin-left: -20px;
+    border-radius: 50%;
+    border-top: 2px solid #07d;
+    border-right: 2px solid transparent;
+    animation: spinner .9s linear infinite;
+}
+
 * {
     vertical-align: baseline;
     font-weight: inherit;
@@ -111,7 +134,9 @@ img {
 
 /* Main CSS */
 
+
 /* HAck from ya */
+
 .invisible {
     position: absolute;
     left: -9999px;
@@ -131,30 +156,6 @@ img {
     padding: 10px 0 0 0;
 }
 
-input[type=email] {
-    float: left;
-    margin-right: 10px;
-    color: white;
-    width: 115px;
-    -webkit-transition: all .35s;
-    -o-transition: all .35s;
-    transition: all .35s;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-input[type=email]:hover {
-    background-color: #000!important;
-}
-
-input[type=email]:active,
-input[type=email]:focus {
-    width: 215px;
-}
-
 .hide-el {
     position: absolute;
     -webkit-transform: scaleX(0);
@@ -170,8 +171,32 @@ input[type=email]:focus {
     color: black;
 }
 
-input[type=email]:active.required+#subscribe,
-input[type=email]:focus.required+#subscribe {
+#loading {
+    display: none;
+}
+
+input[type=email] {
+    float: left;
+    margin-right: 10px;
+    color: white;
+    width: 115px;
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    transition: all .35s;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+input[type=email]:active,
+input[type=email]:focus {
+    width: 215px;
+}
+
+input[type=email]:active + #subscribe,
+input[type=email]:focus + #subscribe {
     display: inline-block;
     visibility: visible;
 }
@@ -181,54 +206,40 @@ input[type=email]:focus.required+#subscribe {
     height: 32px;
 }
 
-#loading {
-    text-align: center;
-    width: 100%;
-    font-size: 1em;
-    line-height: 1.3em;
-}
-
-.form #submitEmail {
-    display: none;
-    background: none;
-    color: white;
-    border: 0px;
-    outline: 0px;
-    cursor: pointer;
-    -webkit-transition: all 0.35s;
-    -o-transition: all 0.35s;
-    transition: all 0.35s;
-}
-
-#form input[type=email].subscribe-error {
+#form.subscribe-error input[type=email] {
     background-color: #DB2352;
 }
 
-input[type=email].subscribed {
+#form.subscribe-success input[type=email] {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    pointer-events: none;
     cursor: default;
     width: 115px;
     background-color: #22AA60;
 }
 
-input[type=email].subscribed:hover {
+#form.subscribe-success input[type=email]:hover {
     background-color: #22AA60;
     box-shadow: 0 0 0 #000;
     line-height: 20px;
     font-size: 14px;
 }
 
-.error {
+#form.subscribe-error #message {
     color: #DB2352;
 }
 
-.success {
+#form.subscribe-success #message {
     max-width: 770px;
     color: #22AA60;
+}
+
+#form.subscribe-success #subscribe {
+    visibility: hidden;
 }
 
 #response {
@@ -258,6 +269,13 @@ input[type=email].subscribed:hover {
     border-right: 10px solid rgba(0, 0, 0, 0);
     border-left: 10px solid rgba(0, 0, 0, 0);
     transition: .5s;
+}
+
+#loading {
+    text-align: center;
+    width: 100%;
+    font-size: 1em;
+    line-height: 1.3em;
 }
 
 #section-audience>div {
@@ -528,7 +546,6 @@ section>.row {
     }
     #enter,
     #loading {
-        padding-top: 5px;
         font-size: 14px;
     }
 }

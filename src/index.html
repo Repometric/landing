@@ -25,31 +25,6 @@
 <!-- endinject -->
 <!-- /Open Graph -->
 
-    <style>
-        @keyframes spinner {            
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .spinner:before {
-            z-index: 1;
-            content: '';
-            box-sizing: border-box;
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            width: 50px;
-            height: 50px;
-            margin-top: -20px;
-            margin-left: -20px;
-            border-radius: 50%;
-            border-top: 2px solid #07d;
-            border-right: 2px solid transparent;
-            animation: spinner .9s linear infinite;
-        }
-    </style>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -88,20 +63,21 @@
                             <form action="https://repometric.us15.list-manage.com/subscribe/post?u=b6cca98086d340193c09d707f&amp;id=9258d978d7" method="post"
                                   id="form" class="validate" target="_blank" novalidate="">
                                 <div class="input-group form" id="formSection">
-                                    <div id="response">
-                                        <div id="message" style="display: none;"></div>
-                                    </div>
                                     <div class="mc-field-group">
+                                        <div id="response">
+                                            <div id="message" style="display: none;"></div>
+                                        </div>
                                         <input id="email" 
                                                name="EMAIL" 
-                                               class="btn btn-primary required email" 
+                                               class="btn btn-primary email"
                                                placeholder="Subscribe" 
-                                               value="" 
+                                               value=""
                                                type="email" 
                                                pattern="[A-Za-z]{2,}"/>
                                         <button type="submit" name="subscribe" id="subscribe" class="button">
                                             <i id="enter" class="fa fa-envelope-o fa-fw"></i>
-                                            <i id="loading" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" style="display: none;"></i>
+                                            <i id="loading" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                            <label>Enter your email...</label>
                                         </button>
                                     </div>
                                     <div aria-hidden="true" class="hide-el">

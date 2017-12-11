@@ -28,7 +28,7 @@ Build the page and copy all static files to `www` folder:
 $ npm run build
 ```
 
-Thats it! Open `www/index.html` in browser to preview before deployment.
+That's it! Open `www/index.html` in browser to preview before deployment.
 The page itself is automatically build & deployed after any change in `master` branch.
 
 ## More
