@@ -1,5 +1,16 @@
 /* CSS Huck */
 
+:root {
+  --color-black: #231f20;
+  --color-white: white;
+  --color-grey: #594f51;
+  --color-dark-grey: #404040;
+  --color-light-grey: #efefef;
+  --color-green: #22aa60;
+  --color-pink: #db2352;
+  --main-font: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
 @keyframes spinner {
     to {
         transform: rotate(360deg);
@@ -50,8 +61,8 @@ html {
 
 body {
     font-size: 100%;
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    background-color: #efefef;
+    font-family: var(--main-font);
+    background-color: var(--color-light-grey);
 }
 
 p {
@@ -93,16 +104,10 @@ a img,
     border: 0;
 }
 
-input {
+input, img {
     border: none;
     outline: none;
 }
-
-img {
-    border: none;
-    outline: none;
-}
-
 
 /* remember to define focus styles! */
 
@@ -127,7 +132,6 @@ del {
 img {
     -ms-interpolation-mode: bicubic;
 }
-
 
 /* End CSS Huck */
 
@@ -164,17 +168,10 @@ img {
     transform: scaleX(0);
 }
 
-#subscribe {
-    padding-top: 5px;
-    visibility: hidden;
-    background: none;
-    color: black;
-}
-
 input[type=email] {
     float: left;
     margin-right: 10px;
-    color: white;
+    color: var(--color-white);
     width: 115px;
     -webkit-transition: all .35s;
     -o-transition: all .35s;
@@ -197,59 +194,15 @@ input[type=email]:focus + #subscribe {
     visibility: visible;
 }
 
-input[type=email]:active + #subscribe.loading #loading,
-input[type=email]:focus + #subscribe.loading #loading{
-    display: inline-block;
-    visibility: visible;
-}
-
-input[type=email]:active + #subscribe.loading #enter,
-input[type=email]:focus + #subscribe.loading #enter{
-    display: none;
-    visibility: hidden;
-}
-
 .form {
     border-radius: 18.75em;
     height: 32px;
 }
 
-#form.subscribe-error input[type=email] {
-    background-color: #DB2352;
-}
-
-#form.subscribed input[type=email] {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    pointer-events: none;
-    cursor: default;
-    width: 115px;
-    background-color: #22AA60;
-}
-
-#form.subscribed input[type=email]:hover {
-    background-color: #22AA60;
-    box-shadow: 0 0 0 #000;
-    line-height: 20px;
-    font-size: 14px;
-}
-
-#form.subscribed #subscribe {
-    visibility: hidden;
-}
-
-#form.subscribe-error #message {
-    color: #DB2352;
-    display: block;
-}
-
-#form.subscribe-success #message {
-    max-width: 770px;
-    color: #22AA60;
-    display: block;
+#response {
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    transition: all .35s;
 }
 
 #message {
@@ -259,7 +212,7 @@ input[type=email]:focus + #subscribe.loading #enter{
     top: 47px;
     width: 250px;
     padding: 5px 10px;
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 5px;
     z-index: 5;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .05);
@@ -277,6 +230,13 @@ input[type=email]:focus + #subscribe.loading #enter{
     border-right: 10px solid rgba(0, 0, 0, 0);
     border-left: 10px solid rgba(0, 0, 0, 0);
     transition: .5s;
+}
+
+#subscribe {
+    padding-top: 5px;
+    visibility: hidden;
+    background: none;
+    color: black;
 }
 
 #loading {
@@ -309,47 +269,48 @@ input[type=email]:focus + #subscribe.loading #enter{
     opacity: 0.7 !important;
 }
 
-
 /* Placeholder behaviour */
 
 input[type=email]::-webkit-input-placeholder {
-    color: white !important;
+    color: var(--color-white) !important;
     transition: color 0.7s ease;
 }
 
 input[type=email]:-ms-input-placeholder {
-    color: white !important;
+    color: var(--color-white) !important;
     transition: color 0.7s ease;
 }
 
 input[type=email]::-moz-placeholder {
-    color: white !important;
+    color: var(--color-white) !important;
     transition: color 0.7s ease;
     opacity: 1;
 }
 
 input[type=email]:-moz-placeholder {
-    color: white !important;
+    color: var(--color-white) !important;
     opacity: 1;
     transition: color 0.7s ease;
 }
 
 input[type=email]:focus::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, .4) !important;
+    color: var(--color-white) !important;
+    opacity: .4;
 }
 
 input[type=email]:focus:-ms-input-placeholder {
-    color: rgba(255, 255, 255, .4) !important;
+    color: var(--color-white) !important;
+    opacity: .4;
 }
 
 input[type=email]:focus::-moz-placeholder {
-    color: rgba(255, 255, 255, .4) !important;
-    opacity: 1;
+    color: var(--color-white) !important;
+    opacity: .4;
 }
 
 input[type=email]:focus:-moz-placeholder {
-    color: rgba(255, 255, 255, .4) !important;
-    opacity: 1;
+    color: var(--color-white) !important;
+    opacity: .4;
 }
 
 
@@ -379,7 +340,7 @@ label,
 input,
 p,
 a {
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--main-font);
 }
 
 label {
@@ -393,13 +354,13 @@ p {
 }
 
  ::-moz-selection {
-    color: white;
+    color: var(--color-white);
     text-shadow: none;
     background: #222;
 }
 
  ::selection {
-    color: white;
+    color: var(--color-white);
     text-shadow: none;
     background: #222;
 }
@@ -410,7 +371,7 @@ ul {
 
 hr {
     border-width: 0.3em;
-    border-color: #231f20;
+    border-color: var(--color-black);
     margin-left: auto;
     margin-right: auto;
     max-width: 50px;
@@ -418,14 +379,14 @@ hr {
 
 hr.underline {
     border-width: 0.3em;
-    border-color: #231f20;
+    border-color: var(--color-black);
     text-align: left;
     margin-left: 0 !important;
     margin: 1.9em;
 }
 
 a {
-    color: #231f20;
+    color: var(--color-black);
     font-size: 0.875em;
     -webkit-transition: all 0.35s;
     transition: all 0.35s;
@@ -433,11 +394,12 @@ a {
 
 a:hover,
 a:focus {
-    color: #594f51;
+    color: var(--color-grey);
 }
 
 .btn {
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
+    font-family: var(--main-font);
     border: none;
     border-radius: 18.75em;
     font-weight: 700;
@@ -447,8 +409,8 @@ a:focus {
 }
 
 .btn-primary {
-    color: white;
-    background-color: #231f20;
+    color: var(--color-white);
+    background-color: var(--color-black);
     -webkit-transition: all 0.35s;
     transition: all 0.35s;
     border-color: inherit;
@@ -464,8 +426,8 @@ a:focus {
 .btn-primary.active,
 .btn-primary:active:focus,
 .btn-primary.active.focus {
-    color: white;
-    background-color: rgb(64, 64, 64);
+    color: var(--color-white);
+    background-color: var(--color-dark-grey);
     border-color: inherit;
     outline-color: inherit;
     border: 0 !important;
@@ -494,10 +456,9 @@ section>.row {
 
 @keyframes chColor {
     100% {
-        color: white
+        color: var(--color-white);
     }
 }
-
 
 /* Media queries */
 
@@ -517,7 +478,7 @@ section>.row {
 
 @media (min-width: 768px) {
     body {
-        background: url('images/background.jpg') no-repeat;
+        background: url('../images/background.jpg') no-repeat;
         background-size: cover;
         background-attachment: fixed;
     }

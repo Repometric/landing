@@ -25,14 +25,53 @@
 <!-- endinject -->
 <!-- /Open Graph -->
 
+    <style>
+        #form.subscribe-error input[type=email] {
+            background-color: var(--color-pink);
+        }
+
+        #form.subscribe-success input[type=email] {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            pointer-events: none;
+            cursor: default;
+            width: 115px;
+            background-color: var(--color-green);
+        }
+
+        #form.subscribe-success input[type=email]:hover {
+            background-color: var(--color-green);
+            box-shadow: 0 0 0 #000;
+            line-height: 20px;
+            font-size: 14px;
+        }
+
+        #form.subscribe-error #message {
+            color: var(--color-pink);
+        }
+
+        #form.subscribe-success #message {
+            max-width: 770px;
+            color: var(--color-green);
+        }
+
+        #form.subscribe-success #subscribe {
+            visibility: hidden;
+        }
+    </style>
+
+    <!-- build:css -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css" inline>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- endbuild -->
 
 </head>
-
 
 <body class="spinner">
  
