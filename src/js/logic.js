@@ -1,86 +1,71 @@
-document.addEventListener("readystatechange", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
     document.body.classList.remove('spinner');
 
     var $dom = {
-        email: $("#email"),
-        message: $("#message"),
-        subscribe: $("#subscribe"),
-        key: $("#subscribeKey"),
-        form: $("#form")
+        email: document.getElementById("email"),
+        message: document.getElementById("message"),
+        subscribe: document.getElementById("subscribe"),
+        key: document.getElementById("subscribeKey"),
+        form: document.getElementById("form")
     };
 
+    function expand() {
+        $dom.email.placeholder = $dom.email.dataset.placeholder_active;
+    }
+
     function collapse() {
-        if (!$dom.form.hasClass("subscribe-success")) {
-            $dom.email.val("");
-        }
+        $dom.email.placeholder = $dom.email.dataset.placeholder_inactive;
+        $dom.email.value = "";
     }
 
-    function hideMessage() {
-        if (!$dom.form.hasClass("subscribe-success")) {
-            $dom.form.removeClass("subscribe-error");
-            $dom.message.html("").hide();
-        }
-    }
-
-    function showMessage(message) {
-        $dom.message.html(message).show();
+    function showMessage(message, className) {
+        $dom.message.innerHTML = message;
+        $dom.form.classList.add(className);
         setTimeout(function() {
-            $dom.message.html("").hide();
+            $dom.form.classList.remove(className);
         }, 3000);
     }
 
-    function reset() {
-        collapse();
-        hideMessage();
-    }
+    function request(url, success) {
+        var request = new XMLHttpRequest();
 
-    function toggle() {
-        $("#enter, #loading").toggle();
-    }
-
-    function request(success, error) {
-        var url = $dom.form.attr("action").replace("/post?u=", "/post-json?u=") + "&c=?";
-        var data = $dom.email.attr("name") + "=" + $dom.email.val() + "&" + $dom.key.attr("name") + "=";
-        var request = {
-            url: url,
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            data: data,
-            success: success,
-            error: error
+        request.open('GET', url, true);
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+                success(JSON.parse(request.responseText));
+            }
         };
-        $.ajax(request);
+        request.send();
     }
-    
+
     function subscribe(element) {
         element.preventDefault();
-        if (!$dom.form.hasClass("subscribe-success")) {
-            toggle();
-            request(checkResult.bind(this));
-        }
-    }
-    
-    function checkResult(data) {
-        var message;
-        toggle();
-        if (data.result === "success") {
-            $dom.form.addClass("subscribe-success");
-            $dom.email.val("Subscribed");
-            message = data.msg;
-        } else if (data.result === "error"
-            && data.msg.toLowerCase().includes("is already subscribed")){
-            console.error("Error: " + data.msg);
-            return;
-        } else {
-            $dom.form.addClass("subscribe-error");
-            message = data.msg.replace("0 -", "Error:");
-        }
-        showMessage(message);
-    }
-    $dom.email.bind("input", hideMessage.bind(this));
-    $dom.email.bind("blur", reset.bind(this));
+        $dom.subscribe.classList.add("loading");
 
-    $dom.subscribe.bind("click", subscribe.bind(this));
+        var url = $dom.form.getAttribute("action").replace("/post?u=", "/post-json?u=") + "&";
+        var data = $dom.email.getAttribute("name") + "=" + $dom.email.value + "&" + $dom.key.getAttribute("name");
+
+        request(url + data, checkResult);
+    }
+
+    function checkResult(response) {
+        $dom.subscribe.classList.remove("loading");
+        if (response["result"] === "success") {
+            $dom.email.blur();
+            $dom.email.value = "Subscribed";
+            $dom.form.classList.add("subscribed");
+            showMessage(response["msg"], "subscribe-success");
+        } else if (response["result"] === "error"
+            && response["msg"].toLowerCase().includes("is already subscribed")) {
+            console.error("Error: " + response["msg"]);
+        } else {
+            showMessage(response["msg"].replace("0 -", "Error:"), "subscribe-error");
+        }
+    }
+
+    $dom.email.addEventListener("click", expand);
+    $dom.email.addEventListener("blur", collapse);
+
+    $dom.subscribe.addEventListener("click", subscribe);
 });

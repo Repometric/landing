@@ -171,10 +171,6 @@ img {
     color: black;
 }
 
-#loading {
-    display: none;
-}
-
 input[type=email] {
     float: left;
     margin-right: 10px;
@@ -201,6 +197,18 @@ input[type=email]:focus + #subscribe {
     visibility: visible;
 }
 
+input[type=email]:active + #subscribe.loading #loading,
+input[type=email]:focus + #subscribe.loading #loading{
+    display: inline-block;
+    visibility: visible;
+}
+
+input[type=email]:active + #subscribe.loading #enter,
+input[type=email]:focus + #subscribe.loading #enter{
+    display: none;
+    visibility: hidden;
+}
+
 .form {
     border-radius: 18.75em;
     height: 32px;
@@ -210,7 +218,7 @@ input[type=email]:focus + #subscribe {
     background-color: #DB2352;
 }
 
-#form.subscribe-success input[type=email] {
+#form.subscribed input[type=email] {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -222,33 +230,30 @@ input[type=email]:focus + #subscribe {
     background-color: #22AA60;
 }
 
-#form.subscribe-success input[type=email]:hover {
+#form.subscribed input[type=email]:hover {
     background-color: #22AA60;
     box-shadow: 0 0 0 #000;
     line-height: 20px;
     font-size: 14px;
 }
 
+#form.subscribed #subscribe {
+    visibility: hidden;
+}
+
 #form.subscribe-error #message {
     color: #DB2352;
+    display: block;
 }
 
 #form.subscribe-success #message {
     max-width: 770px;
     color: #22AA60;
-}
-
-#form.subscribe-success #subscribe {
-    visibility: hidden;
-}
-
-#response {
-    -webkit-transition: all .35s;
-    -o-transition: all .35s;
-    transition: all .35s;
+    display: block;
 }
 
 #message {
+    display: none;
     position: absolute;
     left: 0px;
     top: 47px;
@@ -258,6 +263,9 @@ input[type=email]:focus + #subscribe {
     border-radius: 5px;
     z-index: 5;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .05);
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    transition: all .35s;
 }
 
 #message:after {
@@ -272,6 +280,7 @@ input[type=email]:focus + #subscribe {
 }
 
 #loading {
+    display: none;
     text-align: center;
     width: 100%;
     font-size: 1em;

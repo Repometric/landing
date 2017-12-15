@@ -64,20 +64,19 @@
                                   id="form" class="validate" target="_blank" novalidate="">
                                 <div class="input-group form" id="formSection">
                                     <div class="mc-field-group">
-                                        <div id="response">
-                                            <div id="message" style="display: none;"></div>
-                                        </div>
-                                        <input id="email" 
+                                        <div id="message"></div>
+                                        <input id="email"
                                                name="EMAIL" 
                                                class="btn btn-primary email"
-                                               placeholder="Subscribe" 
+                                               placeholder="Subscribe"
+                                               data-placeholder_inactive="Subscribe"
+                                               data-placeholder_active="Enter your email..."
                                                value=""
                                                type="email" 
-                                               pattern="[A-Za-z]{2,}"/>
+                                               pattern="[A-Za-z]{2,}" />
                                         <button type="submit" name="subscribe" id="subscribe" class="button">
                                             <i id="enter" class="fa fa-envelope-o fa-fw"></i>
                                             <i id="loading" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                                            <label>Enter your email...</label>
                                         </button>
                                     </div>
                                     <div aria-hidden="true" class="hide-el">
@@ -160,8 +159,6 @@
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <[endif]-->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.min.js"></script>
     <script src="js/logic.js" inline></script>
 
 </body>
