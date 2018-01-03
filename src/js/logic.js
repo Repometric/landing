@@ -27,18 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
     }
 
-    function request(url, success) {
-        var request = new XMLHttpRequest();
-
-        request.open('GET', url, true);
-        request.onload = function() {
-            if (request.status >= 200 && request.status < 400) {
-                success(JSON.parse(request.responseText));
-            }
-        };
-        request.send();
-    }
-
     function subscribe(element) {
         element.preventDefault();
         $dom.subscribe.classList.add("loading");
@@ -46,21 +34,27 @@ document.addEventListener("DOMContentLoaded", function () {
         var url = $dom.form.getAttribute("action").replace("/post?u=", "/post-json?u=") + "&";
         var data = $dom.email.getAttribute("name") + "=" + $dom.email.value + "&" + $dom.key.getAttribute("name");
 
-        request(url + data, checkResult);
+        $jsonp.send(url + data + '&c=checkResult', {
+            callbackName: 'checkResult',
+            onSuccess: checkResult,
+            onTimeout: function() {
+                console.error('timeout!');
+            }
+        });
     }
 
-    function checkResult(response) {
+    function checkResult(data) {
         $dom.subscribe.classList.remove("loading");
-        if (response["result"] === "success") {
+        if (data.result === "success") {
             $dom.email.blur();
             $dom.email.value = "Subscribed";
             $dom.form.classList.add("subscribed");
-            showMessage(response["msg"], "subscribe-success");
-        } else if (response["result"] === "error"
-            && response["msg"].toLowerCase().includes("is already subscribed")) {
-            console.error("Error: " + response["msg"]);
+            showMessage(data.msg, "subscribe-success");
+        } else if (data.result === "error"
+            && data.msg.toLowerCase().includes("is already subscribed")) {
+            console.error("Error: " + data.msg);
         } else {
-            showMessage(response["msg"].replace("0 -", "Error:"), "subscribe-error");
+            showMessage(data.msg.replace("0 -", "Error:"), "subscribe-error");
         }
     }
 
